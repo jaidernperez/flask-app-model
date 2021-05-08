@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 
 import os
-
+import nltk
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import HashingVectorizer
 import re
@@ -9,6 +9,7 @@ import pickle
 
 app = Flask(__name__)
 
+nltk.download('stopwords')
 stop = stopwords.words('spanish')
 
 
