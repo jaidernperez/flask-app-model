@@ -26,9 +26,9 @@ def login():
     if request.method == 'GET':
         return render_template('first_app.html', title='Sentimientos')
     else:
-        feeling = request.form.get("feeling")
-
-        return f"<h1>El sentimiento '{feeling}'' es {get_feeling_type(feeling)} </h1>"
+        feeling: str = request.form.get("feeling")
+        classification = get_feeling_type(feeling)
+        return f"<h1>El sentimiento '{feeling}'' es {classification} </h1>"
 
 
 def tokenizer(text):
