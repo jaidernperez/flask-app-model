@@ -4,5 +4,3 @@ gunicorn
 numpy
 nltk
 sklearn
-pickle
-re
