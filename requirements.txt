@@ -5,4 +5,3 @@ numpy
 nltk
 sklearn
 wtforms
-sqlite3
