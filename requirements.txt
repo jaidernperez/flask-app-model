@@ -4,3 +4,6 @@ gunicorn
 numpy
 nltk
 sklearn
+wtforms
+pickle
+sqlite3
