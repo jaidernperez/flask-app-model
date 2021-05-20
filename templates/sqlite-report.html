@@ -1,33 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="">
+
 <head>
-    <title>Sqlite clasificador de sentimientos Tweet</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Highlight-Blue.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Highlight-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Newsletter-Subscription-Form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Testimonials.css') }}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amita">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
 </head>
+
 <body>
-
-<h3>Listado de clasificaciones realizadas</h3>
-<hr>
-<table border=1>
-    <tr>
-        <td>Tweet</td>
-        <td>Sentimiento</td>
-        <td>Fecha</td>
-    </tr>
-    {% for row in dataset %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
-        </tr>
-    {% endfor %}
-</table>
-<hr>
-
-<div id='button'>
-    <form action="/">
-        <input type=submit value='Evaluar otro tweet'>
-    </form>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand" href="{{ url_for('index') }}"
+                              style="font-family: 'Kaushan Script', cursive;"><strong>Análisis de sentimientos</strong></a>
+        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
+                class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="post.html"
+                                        style="font-family: 'Kaushan Script', cursive;">Blog Post</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header class="masthead">
+    <div class="overlay" style="background: url(../static/img/5.png);background-size: auto;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="site-heading">
+                    <h1 style="font-family: 'Kaushan Script', cursive;">Reporte de clasificaciones</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="newsletter-subscribe">
+    <div class="container" style="padding: 0 0 5% 0;">
+        <div class="intro">
+            <h2 class="text-center" style="font-family: Lora, serif;">Listado de clasificaciones realizadas</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="text-white" style="background-color: #0275d8">
+                <tr class="text-center">
+                    <th>Tweet</th>
+                    <th>Sentimiento</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in dataset %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td class="text-center">
+                            {% if row[1] == 0 %}
+                                Neutro
+                            {%  elif row[1] == 1 %}
+                                Positivo
+                            {%  elif row[1] == 2 %}
+                                Negativo
+                            {%  else %}
+                                Sin sentimientos
+                            {% endif %}
+                           </td>
+                        <td>{{ row[2] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <form action="/">
+                    <input class="btn btn-primary border rounded-pill" type=submit
+                           style="background: var(--blue);border-radius: 20px; margin-top: 2rem" value='Evaluar otro tweet'>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i
+                            class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li>
+                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i
+                            class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
+                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i
+                            class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                </ul>
+                <p class="text-muted copyright">Copyright&nbsp;©&nbsp;Jaider Pérez 2021</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/clean-blog.js') }}"></script>
 </body>
+
 </html>
